@@ -1,0 +1,6 @@
+[build]
+  command = "hugo -s ./dist"
+  publish = "dist"
+
+[context.deploy-preview]
+  command = "hugo server -wDs ./dist -d dev"
