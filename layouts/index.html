@@ -1,9 +1,75 @@
-{{ partial "header.html" . }}
-{{ range $index, $page := (.Paginate (where .Data.Pages "Type" "posts")).Pages }}
-{{ if ne $index 0 }}
-{{ end }}
-{{ .Render "li" }}
-{{ end }}
-{{ partial "pagination.html" .Paginator }}
-{{ partial "siteinfo.html" . }}
-{{ partial "footer.html" . }}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  {{ with .Title | default .Site.Title }}
+  <title>{{ . }}</title>
+  <meta property="og:title" content="{{ . }}" />
+  <meta name="twitter:title" content="{{ . }}" />
+  {{ end }}
+
+  {{ with .Description | default .Site.Params.subtitle }}
+  <meta name="description" content="{{ . }}">
+  <meta property="og:description" content="{{ . }}">
+  <meta name="twitter:description" content="{{ . }}">
+  {{ end }}
+
+  <meta name="author" content="{{ .Site.Params.author }}"/>
+  <meta property="og:site_name" content="{{ .Site.Title }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+
+  {{ with .Params.share_img | default .Site.Params.logo }}
+  <meta property="og:image" content="{{ . | absURL }}" />
+  <meta name="twitter:image" content="{{ . | absURL }}" />
+  {{ end }}
+  <meta name="twitter:card" content="summary" />
+
+  {{ with .Site.Params.twitter }}
+  <meta name="twitter:site" content="@{{ . }}" />
+  <meta name="twitter:creator" content="@{{ . }}" />
+  {{ end }}
+
+  {{ if .IsPage }}
+  <meta property="og:type" content="article" />
+  {{ with .Site.Params.facebook }}
+  <meta property="og:article:author" content="https://facebook.com/{{ . }}" />
+  {{ end }}
+  {{ else }}
+  <meta property="og:type" content="website" />
+  {{ end }}
+  <!-- Hugo Version number -->
+  {{ .Hugo.Generator -}}
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
+  <link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.ico" />
+  {{ if eq .URL "/" }}
+  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+  {{ end }}
+  <script type="text/javascript" src="{{ .Site.BaseURL }}js/bundle.js"></script>
+  {{ partial "head_custom.html" . }}
+</head>
+
+<body style="overflow: hidden;margin:10px;" onclick="document.getElementById('desc').style.opacity = '.2'">
+<div style="border:1px solid rgba(0, 0, 0, 0.08);background: #E6E6E4;width:100%;height:100%;border-radius: 4px; box-shadow: 0 0 13px rgba(0, 0, 0, 0.1) inset;padding:20px 40px;text-align:center">
+	<h2>Hi, I'm Emre.</h2>
+	<a href="/blog" style="font-size:1.6em">My blog</a>
+			<div id="desc" style="opacity:.0;font-weight:lighter;margin-top:50px;margin-left:-10px">
+		<li>software engineer</li>
+<li>entrepreneur</li>
+<li>founder of <a href="https://rakam.io">rakam</a></li>
+<li>data enthusiast</li>
+<li>open-source believer</li>
+<li>amateur electronic music producer</li>
+<li>hiker</li>
+<li>crazy walker</li>
+		</div>
+	<div style="position: fixed; left: 50%; bottom: 10px; margin-left:-135px">
+	{{ partial "link.html" . }}
+	<img title="don't worry, i'm not a serial killer"  src="/serial-killer.jpeg">
+	</div>
+	
+</div>
+
+{{ partial "svgpack-sprite.html" . }}
+  {{- partial "footer_custom.html" . }}
+
+</body>
