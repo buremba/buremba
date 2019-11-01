@@ -22,19 +22,20 @@
         }};for(l=0;l<m.length;l++){n[m[l]]=d(m[l])}e.rakam=n})(window,document);
 
     rakam.init("s41crm9fcr199379e2qpkl8fedv2p2tlnl7g4egsoqh0885b8k3j0na352t91bvq", null, {
-    apiEndpoint:"rakam-trial-webapp-1979847320.us-east-1.aws.getrakam.com", 
-    includeUtm: true, 
-    trackClicks: true, 
-    trackForms: true, 
-    includeReferrer: true 
+    apiEndpoint:"rakam-trial-webapp-1979847320.us-east-1.aws.getrakam.com",
+    includeUtm: true,
+    trackClicks: true,
+    trackForms: true,
+    includeReferrer: true
 }, function() {
     var e = document.documentElement, g = document.getElementsByTagName('body')[0],
             x = window.innerWidth || e.clientWidth || g.clientWidth,
-            y = window.innerHeight|| e.clientHeight|| g.clientHeight; 
+            y = window.innerHeight|| e.clientHeight|| g.clientHeight;
 
     rakam.logEvent("pageview", {url: window.location.pathname, time_on_page: rakam.getTimeOnPreviousPage(), returning_session: rakam.isReturningUser(), color_depth: window.screen.colorDepth, viewport: x + ' × ' + y, title: document.title});
-});
-rakam.startTimer(true);
+      rakam.startTimer(true);
+
+ });
 
 rakam.setSuperProperties({platform: 'Web', _ip: true, _user_agent:true, _referrer:document.referrer, resolution: window.screen.width+" × "+window.screen.height}, true);
 </script>
